@@ -1,7 +1,10 @@
 export default () => ({
   env: process.env.NODE_ENV || 'development',
   redis: {
-    url: process.env.REDIS_URL || 'redis://localhost:6379/',
+    url:
+      process.env.REDIS_URL ||
+      'redis-11977.c278.us-east-1-4.ec2.cloud.redislabs.com:11977',
+    password: process.env.PASSWORD || '8A6nxHcBCFyhkzgXkSnVNurS9WNoViol',
     ttl: process.env.REDIS_TTL || 60 * 60 * 24 * 7, // 7 day
   },
   jwtAuth: {
