@@ -23,4 +23,5 @@ export default () => ({
       logging: !!process.env.MYSQL_LOGGING || true,
     },
   },
+  port: Number(process.env.PORT) || 3000,
 });

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
-import { PaginateDto } from 'src/common/dto/response.dto';
+import { PaginateDto } from '../../../common/dto/response.dto';
 
 export class UpdateUserDto {
   @ApiProperty({ required: true })

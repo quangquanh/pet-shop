@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { BadRequestException } from '@nestjs/common/exceptions';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
-import { ROLEID } from 'src/common/enum';
-import { ERROR_MESSAGE } from 'src/common/error-message';
-import { randomCode } from 'src/common/function';
-import configuration from 'src/configuration/configuration';
-import { CachingService } from 'src/libs/caching/caching.service';
+import { ROLEID } from '../../common/enum';
+import { ERROR_MESSAGE } from '../../common/error-message';
+import { randomCode } from '../../common/function';
+import configuration from '../../configuration/configuration';
+import { CachingService } from '../../libs/caching/caching.service';
 import { UserService } from '../user/user.service';
 import {
   LoginDto,
@@ -23,14 +23,14 @@ export class AuthService {
   ) {}
 
   async login(data: LoginDto) {
-    const { email, password } = data;
+    const { email } = data;
     const user = await this.userService.findOneUser({ email }, {}, false);
 
-    if (!user || !compare(password, user.password)) {
+    const { id, roleId, password, isActive, ...userRest } = user;
+    if (!user || (!compare(data.password, password) && isActive)) {
       throw new BadRequestException(ERROR_MESSAGE.EMAIL_OR_PASSWORD_INCORRECT);
     }
 
-    const { id, roleId } = user;
     const sessionId = randomCode(6);
     const payload: TokenPayload = { id, email, roleId, sessionId };
 
@@ -46,7 +46,12 @@ export class AuthService {
       refreshToken,
       Number(configuration().redis.ttl),
     );
-    return { type: 'Bearer', accessToken, refreshToken };
+    return {
+      type: 'Bearer',
+      user: { id, ...userRest },
+      accessToken,
+      refreshToken,
+    };
   }
 
   async register(data: RegisterDto) {

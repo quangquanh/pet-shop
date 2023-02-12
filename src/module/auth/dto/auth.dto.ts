@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger/dist';
 import { IsBoolean, IsEmail, IsEnum } from 'class-validator';
 import { IsNotEmpty, IsString } from 'class-validator';
-import { ROLEID } from 'src/common/enum';
+import { ROLEID } from '../../../common/enum';
 
 export class LoginDto {
   @ApiProperty({ required: true })

@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { UserRepository } from './user.repository';
 import { FindOptionsWhere, DeepPartial } from 'typeorm';
-import { User } from 'src/libs/database/entity/user.entity';
+import { User } from '../../libs/database/entity/user.entity';
 import { RegisterDto } from '../auth/dto/auth.dto';
 import { FindAllUserDto } from './dto/find-user.dto';
-import { likeField } from 'src/common/find-operation';
+import { likeField } from '../../common/find-operation';
 import { NotFoundException } from '@nestjs/common/exceptions';
-import { ERROR_MESSAGE } from 'src/common/error-message';
+import { ERROR_MESSAGE } from '../../common/error-message';
 import { FindOptionsSelect } from 'typeorm/find-options/FindOptionsSelect';
 
 @Injectable()

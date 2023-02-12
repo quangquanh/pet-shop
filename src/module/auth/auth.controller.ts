@@ -5,7 +5,7 @@ import {
   ApiBearerAuth,
   ApiOkResponse,
 } from '@nestjs/swagger/dist/decorators';
-import { ResponseSuccessDto } from 'src/common/dto/response.dto';
+import { ResponseSuccessDto } from '../../common/dto/response.dto';
 import { AuthService } from './auth.service';
 import { User } from './decorator/user.decorator';
 import {

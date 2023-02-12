@@ -17,22 +17,10 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "baseUrl": "./",
-    "paths": {
-      "src/*": [
-        "src/*"
-      ],
-      "common/*": [
-        "src/common/*"
-      ],
-      "module/*": [
-        "src/module/*"
-      ],
-      "libs/*": [
-        "src/libs/*"
-      ],
-      "configuration/*": [
-        "src/configuration/*"
-      ],
-    },
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "public"
+  ]
 }

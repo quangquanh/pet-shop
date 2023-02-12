@@ -10,12 +10,12 @@ import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard';
 import { UserService } from './user.service';
 import { RolesGuard } from '../auth/role/role.guard';
 import { Roles } from '../auth/decorator/role.decorator';
-import { ROLEID } from 'src/common/enum';
-import { FindOptionsOrderPipe } from 'src/common/dto/validation.pipe';
-import { FindOptionsOder } from 'src/common/dto/find.dto';
+import { ROLEID } from '../../common/enum';
+import { FindOptionsOrderPipe } from '../../common/dto/validation.pipe';
+import { FindOptionsOder } from '../../common/dto/find.dto';
 import { User } from '../auth/decorator/user.decorator';
 import { ForbiddenException } from '@nestjs/common/exceptions';
-import { ERROR_MESSAGE } from 'src/common/error-message';
+import { ERROR_MESSAGE } from '../../common/error-message';
 import { Put } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
 import {
@@ -23,7 +23,7 @@ import {
   FindOneUserResponseDto,
   UpdateUserDto,
 } from './dto/user.dto';
-import { ResponseSuccessDto } from 'src/common/dto/response.dto';
+import { ResponseSuccessDto } from '../../common/dto/response.dto';
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('user')
@@ -87,7 +87,10 @@ export class UserController {
       throw new ForbiddenException(ERROR_MESSAGE.FOR_BIDEN_RESOURCE);
     }
 
-    await this.userService.editUser({ id: userId }, data);
+    await this.userService.editUser(
+      { id: userId },
+      { ...data, roleId: ROLEID.USER, isActive: true },
+    );
     return {
       success: true,
     };

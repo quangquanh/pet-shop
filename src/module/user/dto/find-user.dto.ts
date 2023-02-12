@@ -1,4 +1,4 @@
-import { FindAllDto } from 'src/common/dto/find.dto';
+import { FindAllDto } from '../../../common/dto/find.dto';
 
 export interface FindAllUserDto extends FindAllDto {
   roleId?: number;
