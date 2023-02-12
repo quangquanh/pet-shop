@@ -12,7 +12,7 @@ import { CachingService } from './caching.service';
       useFactory: (config: ConfigService) => {
         const redis = config.get('redis');
         return {
-          config: { url: redis.url },
+          config: { url: redis.url, password: redis.password },
         };
       },
     }),
