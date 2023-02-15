@@ -54,15 +54,9 @@ export class RegisterDto {
   @IsString()
   address: string;
 
-  @ApiProperty({ required: true })
-  @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
+  isActive?: boolean;
 
-  @ApiProperty({ required: true })
-  @IsNotEmpty()
-  @IsEnum(ROLEID)
-  roleId: number;
+  roleId?: number;
 }
 
 export class RefreshTokenDto {
@@ -77,4 +71,11 @@ export interface TokenPayload {
   email: string;
   roleId: number;
   sessionId: number;
+}
+
+export class TokenVerificationDto {
+  @ApiProperty({ required: true })
+  @IsString()
+  @IsNotEmpty()
+  token: string;
 }

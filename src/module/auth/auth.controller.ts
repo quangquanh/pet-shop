@@ -14,6 +14,7 @@ import {
   RefreshTokenDto,
   RefreshTokenResponseDto,
   RegisterDto,
+  TokenVerificationDto,
 } from './dto/auth.dto';
 import { JwtAuthGuard } from './jwt/jwt-auth.guard';
 
@@ -26,6 +27,12 @@ export class AuthController {
   @Post('login')
   async login(@Body() data: LoginDto) {
     return await this.authService.login(data);
+  }
+
+  @ApiOkResponse({ type: LoginResponseDto })
+  @Post('google-login')
+  async googleLogin(@Body() data: TokenVerificationDto) {
+    return await this.authService.loginGoogle(data.token);
   }
 
   @ApiOkResponse({ type: ResponseSuccessDto })

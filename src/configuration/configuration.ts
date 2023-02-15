@@ -12,6 +12,13 @@ export default () => ({
     refresh_token_ttl: process.env.JWT_REFRESH_TTL || '7d',
     jwt_token_secret: process.env.JWT_TOKEN_SECRET || 'dsfdgsfdhgmjhfgdbsds',
   },
+  google: {
+    google_client_id:
+      process.env.GOOGLE_CLIENT_ID ||
+      '389621928405-ao853t6nab799a3q2hjcletg291k22o9.apps.googleusercontent.com',
+    google_secret:
+      process.env.GOOGLE_SECRET || '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',
+  },
   database: {
     mysql: {
       type: 'mysql',
